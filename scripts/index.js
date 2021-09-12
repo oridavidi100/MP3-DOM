@@ -4,7 +4,7 @@
  *
  * @param {String} songId - the ID of the song to play
  */
-function playSong(songId) {
+ function playSong(songId) {
     // Your code here
 }
 
@@ -13,7 +13,15 @@ function playSong(songId) {
  */
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
     const children = []
+    let ul =document.createElement("ul");
+    let list=document.createElement("li")
+    for (let i=0;i<5;i++){
+        list.innerHTML=arguments[i]
+        ul.append(list)
+    }
+    children.push(ul)
     const classes = []
+    classes.push("songs")
     const attrs = { onclick: `playSong(${id})` }
     return createElement("div", children, classes, attrs)
 }
@@ -23,7 +31,15 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
  */
 function createPlaylistElement({ id, name, songs }) {
     const children = []
+    let ul =document.createElement("ul");
+    let list=document.createElement("li")
+    for (let i=0;i<3;i++){
+        list.innerHTML=arguments[i]
+        ul.append(list)
+    }
+    children.push(ul)
     const classes = []
+    classes.push("playlists")
     const attrs = {}
     return createElement("div", children, classes, attrs)
 }
@@ -42,6 +58,6 @@ function createPlaylistElement({ id, name, songs }) {
  */
 function createElement(tagName, children = [], classes = [], attributes = {}) {
     // Your code here
-}
-
+    
+    }
 // You can write more code below this line
