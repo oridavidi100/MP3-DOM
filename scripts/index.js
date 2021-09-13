@@ -40,22 +40,26 @@
     }
 
 
-function createElement(tagName, children = [], classes = [], attributes = {}, id) {
-    const element = document.createElement(tagName);
-    for (let child of children)
-    {
-        element.appendChild(child);
-    }
-    element.classList.add(classes);
-    Object.entries(attributes).forEach(([key,value]) => {
-        if (key !== undefined) {
-            element.setAttribute(key, value);
+    function createElement(tagName, children = [], classes = [], attributes = {}) {
+        const el = document.createElement(tagName);
+          
+        // Children
+        for(const child of children) {
+          el.append(child);
         }
-    })
-
-    element.id = id;
-    return element;
-}
+      
+        // Classes
+        for(const cls of classes) {
+          el.classList.add(cls);
+        }
+      
+        // Attributes
+        for (const attr in attributes) {
+          el.setAttribute(attr, attributes[attr]);
+        }
+      
+        return el;
+      }
 
 
 sortedSongs();
