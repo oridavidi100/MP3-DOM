@@ -35,16 +35,23 @@
     }
     
 
+    function createPlaylistElement({ id, name, songs }) {
+        const children = []
+    
+        const ul= document.createElement("ul");
+        for(let i=0; i<3; i++)
+        {
+            let li= document.createElement("li");
+            li.innerHTML = arguments[i];
+            ul.appendChild(li);
+        }
+        children.push(ul);
+        const classes = []
+        classes.push(["playlist"]) // CSS later
+        const attrs = {}
+        return createElement("div", children, classes, attrs, id)
+    }
 
-/**
- * Creates a playlist DOM element based on a playlist object.
- */
-function createPlaylistElement({ id, name, songs }) {
-    const children = []
-    const classes = []
-    const attrs = {}
-    return createElement("div", children, classes, attrs)
-}
 
 function createElement(tagName, children = [], classes = [], attributes = {}, id) {
     const element = document.createElement(tagName);
