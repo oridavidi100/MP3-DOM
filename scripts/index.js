@@ -5,8 +5,18 @@
  * @param {String} songId - the ID of the song to play
  */
  function playSong(songId) {
-    // Your code here
-}
+        const selectedSong = document.getElementById(songId);
+        const classes = []
+        classes.push(["selected"])
+    
+        const songs = document.getElementsByClassName("song");
+        for (let song of songs) {
+            song.classList.remove(classes)
+        }
+        selectedSong.classList.add(classes);
+    }
+    
+
 
 /**
  * Creates a song DOM element based on a song object.
