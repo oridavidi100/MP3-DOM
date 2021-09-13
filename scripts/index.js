@@ -1,9 +1,4 @@
-/**
- * Plays a song from the player.
- * Playing a song means changing the visual indication of the currently playing song.
- *
- * @param {String} songId - the ID of the song to play
- */
+
  function playSong(songId) {
         const selectedSong = document.getElementById(songId);
         const classes = []
@@ -16,17 +11,30 @@
         selectedSong.classList.add(classes);
     }
     
+    function createSongElement({ id, title, album, artist, duration, coverArt }) {
+        const children = []
+        const ul = document.createElement("ul");
+        for (let i = 0; i < 5; i++)
+        {
+            if (arguments[i] === arguments[4])
+            {
+                arguments[i] = durationConvertor(arguments[4]);
+            }
+            let list = document.createElement("li"); 
+            list.innerText = arguments[i]
+            ul.append(list);
+        }
+        let currentImg= document.createElement("img");
+        currentImg.src= arguments[5];
+        ul.appendChild(currentImg);
+        children.push(ul)
+        const classes = []
+        classes.push(["song"]) // CSS later
+        const attrs = { onclick: `playSong(${arguments[0]})`,}
+        return createElement("div", children, classes, attrs, arguments[0])
+    }
+    
 
-
-/**
- * Creates a song DOM element based on a song object.
- */
-function createSongElement({ id, title, album, artist, duration, coverArt }) {
-    const children = []
-    const classes = []
-    const attrs = { onclick: `playSong(${id})` }
-    return createElement("div", children, classes, attrs)
-}
 
 /**
  * Creates a playlist DOM element based on a playlist object.
