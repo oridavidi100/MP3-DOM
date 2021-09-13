@@ -46,20 +46,19 @@ function createPlaylistElement({ id, name, songs }) {
     return createElement("div", children, classes, attrs)
 }
 
-/**
- * Creates a new DOM element.
- *
- * Example usage:
- * createElement("div", ["just text", createElement(...)], ["nana", "banana"], {id: "bla"})
- *
- * @param {String} tagName - the type of the element
- * @param {Array} children - the child elements for the new element.
- *                           Each child can be a DOM element, or a string (if you just want a text element).
- * @param {Array} classes - the class list of the new element
- * @param {Object} attributes - the attributes for the new element
- */
-function createElement(tagName, children = [], classes = [], attributes = {}) {
-    // Your code here
-}
+function createElement(tagName, children = [], classes = [], attributes = {}, id) {
+    const element = document.createElement(tagName);
+    for (let child of children)
+    {
+        element.appendChild(child);
+    }
+    element.classList.add(classes);
+    Object.entries(attributes).forEach(([key,value]) => {
+        if (key !== undefined) {
+            element.setAttribute(key, value);
+        }
+    })
 
-// You can write more code below this line
+    element.id = id;
+    return element;
+}
