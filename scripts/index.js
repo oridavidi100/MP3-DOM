@@ -12,28 +12,15 @@
     }
     
     function createSongElement({ id, title, album, artist, duration, coverArt }) {
-        const children = []
-        const ul = document.createElement("ul");
-        for (let i = 0; i < 5; i++)
-        {
-            if (arguments[i] === arguments[4])
-            {
-                arguments[i] = durationConvertor(arguments[4]);
-            }
-            let list = document.createElement("li"); 
-            list.innerText = arguments[i]
-            ul.append(list);
-        }
-        let currentImg= document.createElement("img");
-        currentImg.src= arguments[5];
-        ul.appendChild(currentImg);
-        children.push(ul)
-        const classes = []
-        classes.push(["song"])
-        const attrs = { onclick: `playSong(${arguments[0]})`,}
-        return createElement("div", children, classes, attrs, arguments[0])
-    }
-    
+        const artistEl = createElement("span", [artist]);
+        
+        const durationEl = createElement("span", ["" + duration] ,["duration", "short-duration"], {onclick: `console.log('${duration}')`});
+      
+        const coverImageArtUrl = "https://townsquare.media/site/295/files/2015/09/Razors-Edge.jpg";
+        const imgEl = createElement("img", [] ,["album-art"], {src: coverImageArtUrl});
+      
+        return createElement("div", ["Artist: ", artistEl, "Duration: ", durationEl, imgEl]);
+      }
 
     function createPlaylistElement({ id, name, songs }) {
         const children = []
