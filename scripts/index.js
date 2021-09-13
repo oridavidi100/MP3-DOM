@@ -22,23 +22,12 @@
         return createElement("div", ["Artist: ", artistEl, "Duration: ", durationEl, imgEl]);
       }
 
-    function createPlaylistElement({ id, name, songs }) {
+      function createPlaylistElement({ id, name, songs }) {
         const children = []
-    
-        const ul= document.createElement("ul");
-        for(let i=0; i<3; i++)
-        {
-            let list= document.createElement("li");
-            list.innerHTML = arguments[i];
-            ul.appendChild(list);
-        }
-        children.push(ul);
         const classes = []
-        classes.push(["playlist"])
         const attrs = {}
-        return createElement("div", children, classes, attrs, id)
+        return createElement("div", children, classes, attrs)
     }
-
 
     function createElement(tagName, children = [], classes = [], attributes = {}) {
         const el = document.createElement(tagName);
