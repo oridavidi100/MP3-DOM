@@ -29,7 +29,7 @@
         ul.appendChild(currentImg);
         children.push(ul)
         const classes = []
-        classes.push(["song"]) // CSS later
+        classes.push(["song"])
         const attrs = { onclick: `playSong(${arguments[0]})`,}
         return createElement("div", children, classes, attrs, arguments[0])
     }
@@ -41,13 +41,13 @@
         const ul= document.createElement("ul");
         for(let i=0; i<3; i++)
         {
-            let li= document.createElement("li");
-            li.innerHTML = arguments[i];
-            ul.appendChild(li);
+            let list= document.createElement("li");
+            list.innerHTML = arguments[i];
+            ul.appendChild(list);
         }
         children.push(ul);
         const classes = []
-        classes.push(["playlist"]) // CSS later
+        classes.push(["playlist"])
         const attrs = {}
         return createElement("div", children, classes, attrs, id)
     }
@@ -69,3 +69,12 @@ function createElement(tagName, children = [], classes = [], attributes = {}, id
     element.id = id;
     return element;
 }
+
+
+sortedSongs();
+
+sortedPlaylists(); 
+
+printAllSongs();
+
+printAllPlaylists();
