@@ -1,60 +1,97 @@
 
  function playSong(songId) {
-        const selectedSong = document.getElementById(songId);
-        const classes = []
-        classes.push(["selected"])
-    
-        const songs = document.getElementsByClassName("song");
-        for (let song of songs) {
-            song.classList.remove(classes)
-        }
-        selectedSong.classList.add(classes);
+    document.getElementById(`-${songId}`).style.backgroundColor="green";
+}
+ 
+function createSongElement({ id, title, album, artist, duration, coverArt }){
+    const children = []
+    const classes = []
+    const attrs = { onclick: `playSong(${id})`,id:`song-${id}`}
+    const artistEl = createElement("div", [" Artist: ",artist],["artists"]);
+    const idEl=createElement("div",["id:",id],["id"]);
+    const titleEl=createElement("div",[" title:",title],["title"]);
+    const albumEl=createElement("div",[" album:",album],["album"]);
+    const durationEl = createElement("div", [ "Duration: ", durationConvert(duration)],[(durationColor(duration))]);
+    const coverImageArtUrl = coverArt;
+    const imgEl = createElement("img", [] ,["album-art"], {src: coverImageArtUrl});
+    children.push(idEl,titleEl,albumEl, artistEl, durationEl, imgEl);
+    classes.push("song")
+    return createElement("div", children, classes, attrs)   
     }
-    
-    function createSongElement({ id, title, album, artist, duration, coverArt }) {
-        const artistEl = createElement("span", [artist]);
+
+    function createPlaylistElement({ id, name, songs }) {
+    const children = []
+    const classes = []
+    const attrs = {}
+    const nameEl = createElement("span", [name],["name"]);
+    const idEl=createElement("span",[id],["pId"]);
+    const songsEl=createElement("span",[songs],["songs"]);
+    const durationEl=createElement("span",[durationConvert(playlistDuration(id))]);
+    children.push(" id:",idEl," name:",nameEl," songs:",songsEl," duration :",durationEl)
+    classes.push("playlists")
+    return createElement("div", children, classes, attrs)
+
+}
+
+function createElement(tagName, children = [], classes = [], attributes = {}) {
+    const el = document.createElement(tagName);
         
-        const durationEl = createElement("span", ["" + duration] ,["duration", "short-duration"], {onclick: `console.log('${duration}')`});
-      
-        const coverImageArtUrl = "https://townsquare.media/site/295/files/2015/09/Razors-Edge.jpg";
-        const imgEl = createElement("img", [] ,["album-art"], {src: coverImageArtUrl});
-      
-        return createElement("div", ["Artist: ", artistEl, "Duration: ", durationEl, imgEl]);
-      }
-
-      function createPlaylistElement({ id, name, songs }) {
-        const children = []
-        const classes = []
-        const attrs = {}
-        return createElement("div", children, classes, attrs)
+    // Children
+    for(const child of children) {
+        el.append(child);
+    }
+    
+    // Classes
+    for(const cls of classes) {
+        el.classList.add(cls);
+    }
+    
+    // Attributes
+    for (const attr in attributes) {
+        el.setAttribute(attr, attributes[attr]);
+    }
+    
+    return el;
     }
 
-    function createElement(tagName, children = [], classes = [], attributes = {}) {
-        const el = document.createElement(tagName);
-          
-        // Children
-        for(const child of children) {
-          el.append(child);
+
+    const songdiv= document.getElementById("songs");
+    const playlistDiv= document.getElementById("playlists")
+    
+    function PrintAllSongs()
+    {
+        for(let song of player.songs)
+        {
+            const { id, title, album, artist, duration, coverArt}= song;
+            const songElem = createSongElement({id,
+                                                title,
+                                                album, 
+                                                artist, 
+                                                duration, 
+                                                coverArt});
+            songdiv.appendChild(songElem);
         }
-      
-        // Classes
-        for(const cls of classes) {
-          el.classList.add(cls);
+    }
+    function PrintAllPlaylists()
+    {
+        for(let playlist of player.playlists)
+        {
+            const { id, name, songs}= playlist;
+            const playlistElem = createPlaylistElement({id, name, songs});
+            playlistDiv.appendChild(playlistElem);
         }
-      
-        // Attributes
-        for (const attr in attributes) {
-          el.setAttribute(attr, attributes[attr]);
-        }
-      
-        return el;
-      }
+    }
+    PrintAllSongs();
+PrintAllPlaylists();
 
-
-sortedSongs();
-
-sortedPlaylists(); 
-
-printAllSongs();
-
-printAllPlaylists();
+function durationColor(duration){
+    if (duration<120){
+      return "less";
+    }
+    if(duration>420 ){
+        return "more"
+    }
+    if (duration>=120&&duration<=420){
+        return "between"
+    }
+}

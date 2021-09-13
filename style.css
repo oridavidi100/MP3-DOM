@@ -1,1 +1,42 @@
-/* Your code here */
+
+body {
+    background-color:lightgray;
+}
+.song {
+    border: 2px dotted coral;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 250px;
+    margin-left: 250px;
+    font-size: medium;
+    text-align: left;
+}
+
+.playlists{
+    border: 2px dotted coral;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 250px;
+    margin-left: 250px;
+}
+
+img{
+    height: 150px;
+    width: 150px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.less{
+    color: green;
+}
+.more{
+    color: red;
+}
+.between{
+    color: yellow;
+}
+.green{
+    background-color: green;
+}
