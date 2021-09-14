@@ -1,12 +1,17 @@
 
  function playSong(songId) {
-    document.getElementById(`-${songId}`).style.backgroundColor="green";
+    
+    document.getElementById(songId).style.backgroundColor="green";
+    alert("play"+songId)
 }
  
 function createSongElement({ id, title, album, artist, duration, coverArt }){
+    
     const children = []
     const classes = []
-    const attrs = { onclick: `playSong(${id})`,id:`song-${id}`}
+    const attrs ={}
+    const playSon=createElement("button",["p"],["playS"],{onclick: `playSong(${id})`,id:`${id}`})
+    const removeButton=createElement("button",["b"],["removeB"],{onclick :`removeSong(${id})`,id:`${id}`})
     const artistEl = createElement("div", [" Artist: ",artist],["artists"]);
     const idEl=createElement("div",["id:",id],["id"]);
     const titleEl=createElement("div",[" title:",title],["title"]);
@@ -14,7 +19,7 @@ function createSongElement({ id, title, album, artist, duration, coverArt }){
     const durationEl = createElement("div", [ "Duration: ", durationConvert(duration)],[(durationColor(duration))]);
     const coverImageArtUrl = coverArt;
     const imgEl = createElement("img", [] ,["album-art"], {src: coverImageArtUrl});
-    children.push(idEl,titleEl,albumEl, artistEl, durationEl, imgEl);
+    children.push(idEl,titleEl,albumEl, artistEl, durationEl, imgEl,removeButton,playSon);
     classes.push("song")
     return createElement("div", children, classes, attrs)   
     }
