@@ -97,21 +97,3 @@ function playlistDuration(id) {
     return sum
 }
 
-function removeSong(id) {
-  let a=0;
-    for(let x=0;x<player.songs.length ;x++){
-      if (player.songs[x].id===id) a=1}
-    if (a===0)
-      throw ("non-existent ID,try another one");
-  for (let i=0;i<player.songs.length ;i++){
-    if (player.songs[i].id===id){
-      player.songs.splice(i,1)
-    }
-  }
-  for (let i=0;i<player.playlists.length;i++){
-    for (let j=0;j<player.playlists[i].songs.length;j++){
-      if (player.playlists[i].songs[j]===id)
-        player.playlists[i].songs.splice(j,1);
-    }
-  }
-}

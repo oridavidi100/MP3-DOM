@@ -1,8 +1,15 @@
 
  function playSong(songId) {
-    
-    document.getElementById(songId).style.backgroundColor="green";
+    document.getElementById(`-${songId}`).style.backgroundColor="green";
     alert("play"+songId)
+}
+
+function removeSong(songId) {
+    for (let i=0;i<player.songs.length ;i++){
+      if (player.songs[i].id===`${songId}`){
+        player.songs.splice(i,1)
+      }
+    }
 }
  
 function createSongElement({ id, title, album, artist, duration, coverArt }){
@@ -10,7 +17,7 @@ function createSongElement({ id, title, album, artist, duration, coverArt }){
     const children = []
     const classes = []
     const attrs ={}
-    const playSon=createElement("button",["p"],["playS"],{onclick: `playSong(${id})`,id:`${id}`})
+    const playSon=createElement("button",["play"],["playS"],{onclick: `playSong(${id})`, id:`-${id}`})
     const removeButton=createElement("button",["b"],["removeB"],{onclick :`removeSong(${id})`,id:`${id}`})
     const artistEl = createElement("div", [" Artist: ",artist],["artists"]);
     const idEl=createElement("div",["id:",id],["id"]);
