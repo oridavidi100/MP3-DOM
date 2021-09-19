@@ -96,4 +96,8 @@ function playlistDuration(id) {
     }
     return sum
 }
-
+function durationSec(duration){
+  duration=duration.split(":");
+  let time=((parseInt(duration[0]*60))+(parseInt(duration[1])))
+  return time
+}
