@@ -1,3 +1,5 @@
+
+
 const player = {
     songs: [
         {
@@ -62,3 +64,43 @@ const player = {
         { id: 5, name: "Israeli", songs: [4, 5] },
     ],
 }
+
+
+function durationConvert(duration)
+{
+  let min = Math.floor(duration / 60);
+  let sec = duration % 60;
+  
+  if (min < 10){
+    min = "0" + String(min);
+  }
+  if (sec < 10) {
+    sec = "0" + String(sec);
+  }
+  return min+':'+sec
+}
+
+function playlistDuration(id) {
+    let sum=0;
+    let list;
+   for (let x=0;x<player.playlists.length;x++){
+      if(player.playlists[x].id===id){
+        list= player.playlists[x]
+      }
+    }
+    for (let i=0;i<list.songs.length;i++){
+      for (let j=0;j<player.songs.length;j++){
+        if (list.songs[i]===player.songs[j].id){
+         sum +=player.songs[j].duration;
+        continue;
+        }
+      }
+    }
+    return sum
+}
+function durationSec(duration){
+  duration=duration.split(":");
+  let time=((parseInt(duration[0]*60))+(parseInt(duration[1])))
+  return time
+}
+
